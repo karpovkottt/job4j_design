@@ -36,7 +36,7 @@ class SimpleConvertTest {
     @Test
     void checkSet() {
         SimpleConvert simpleConvert = new SimpleConvert();
-        Set<String> set = simpleConvert.toSet("first", "second", "first" , "three", "four", "four", "five");
+        Set<String> set = simpleConvert.toSet("first", "second", "first", "three", "four", "four", "five");
         assertThat(set).containsExactlyInAnyOrder("first", "second", "three", "four", "five")
                 .doesNotContain("ten", "one")
                 .doesNotHaveDuplicates()
