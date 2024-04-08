@@ -13,7 +13,6 @@ public class FlatMap<T> implements Iterator<T> {
         this.data = data;
     }
 
-
     @Override
     public boolean hasNext() {
         while (data.hasNext() && !cursor.hasNext()) {
