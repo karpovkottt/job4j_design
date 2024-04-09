@@ -57,43 +57,38 @@ public class TestTask {
 
         while (index < str2.length()) {
 
-            if (str2.charAt(index) == '<') {
-
-                switch (str2.charAt(index + 1)) {
-                    case 'l' -> {
-                        index += 6;
-                        if (validPos(position, build)) {
-                            position--;
-                        }
-                    }
-                    case 'd' -> {
-                        index += 8;
-                        if (validPos(position, build)) {
-                            build.deleteCharAt(position);
-                        }
-                    }
-                    case 'r' -> {
-                        index += 7;
-                        if (validPos(position, build)) {
-                            position++;
-                        }
-                    }
-                    case 'b' -> {
-                        index += 8;
-                        if (validPos(position, build)) {
-                            build.deleteCharAt(position - 1);
-                            position--;
-                        }
-                    }
-                    default -> {
-                    }
+            if (str2.charAt(index) == '<' && str2.charAt(index + 1) == 'l') {
+                index += 6;
+                if (validPos(position, build)) {
+                    position--;
                 }
-
-            } else {
+                continue;
+            }
+            if (str2.charAt(index) == '<' && str2.charAt(index + 1) == 'd') {
+                index += 8;
+                if (validPos(position, build)) {
+                    build.deleteCharAt(position);
+                }
+                continue;
+            }
+            if (str2.charAt(index) == '<' && str2.charAt(index + 1) == 'r') {
+                index += 7;
+                if (validPos(position, build)) {
+                    position++;
+                }
+                continue;
+            }
+            if (str2.charAt(index) == '<' && str2.charAt(index + 1) == 'b') {
+                index += 8;
+                if (validPos(position, build)) {
+                    build.deleteCharAt(position - 1);
+                    position--;
+                }
+                continue;
+            }
                 build.insert(position, str2.charAt(index));
                 index++;
                 position++;
-            }
         }
 
         return str1.contentEquals(build) ? "Yes" : "No";
