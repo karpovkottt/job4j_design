@@ -43,8 +43,8 @@ public class Generics {
         }
     }
 
-    public void printLowerBoundedWildCard(List<? extends Animal> list) {
-        for (Iterator<? extends Animal> iterator = list.iterator(); iterator.hasNext();) {
+    public void printLowerBoundedWildCard(List<? super Tiger> list) {
+        for (Iterator<? super Tiger> iterator = list.iterator(); iterator.hasNext();) {
             Object next = iterator.next();
             System.out.println("Текущий элемент: " + next);
         }
