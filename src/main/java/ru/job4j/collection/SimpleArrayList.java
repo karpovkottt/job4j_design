@@ -32,11 +32,7 @@ public class SimpleArrayList<T> implements SimpleList<T> {
     @Override
     public T set(int index, T newValue) {
         Objects.checkIndex(index, size);
-        if (size == container.length) {
-            grow();
-        }
         T oldValue = container[index];
-        System.arraycopy(container, index, container, index + 1, size - index);
         container[index] = newValue;
         return oldValue;
     }
