@@ -142,4 +142,41 @@ class ForwardLinkedTest {
         assertThat(second.next()).isEqualTo(2);
         assertThat(second.hasNext()).isFalse();
     }
+
+    @Test
+    void whenAddFirstThenOk() {
+        assertThat(list).containsExactly(1, 2);
+        list.addFirst(0);
+        assertThat(list).containsExactly(0, 1, 2);
+        assertThat(list.deleteFirst()).isEqualTo(0);
+        assertThat(list).containsExactly(1, 2);
+    }
+
+    @Test
+    void whenAddFirstToEmptyListThenOk() {
+        list = new ForwardLinked<>();
+        list.addFirst(1);
+        list.addFirst(0);
+        assertThat(list.get(0)).isEqualTo(0);
+        assertThat(list.get(1)).isEqualTo(1);
+        assertThat(list).containsExactly(0, 1);
+    }
+
+    @Test
+    void whenHasIteratorAndAddFirstThenHasNextExceptionThrown() {
+        Iterator<Integer> iterator = list.iterator();
+        assertThat(iterator.hasNext()).isTrue();
+        list.addFirst(0);
+        assertThatThrownBy(iterator::hasNext)
+                .isInstanceOf(ConcurrentModificationException.class);
+    }
+
+    @Test
+    void whenHasIteratorAndAddFirstThenNextExceptionThrown() {
+        Iterator<Integer> iterator = list.iterator();
+        assertThat(iterator.hasNext()).isTrue();
+        list.addFirst(0);
+        assertThatThrownBy(iterator::next)
+                .isInstanceOf(ConcurrentModificationException.class);
+    }
 }
