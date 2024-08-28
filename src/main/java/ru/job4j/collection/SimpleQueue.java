@@ -9,7 +9,7 @@ public class SimpleQueue<T> {
     private int outputCount;
 
     public T poll() {
-        if (inputCount == 0) {
+        if (inputCount == 0 && outputCount == 0) {
             throw new NoSuchElementException("Queue is empty");
         }
         if (outputCount == 0) {
